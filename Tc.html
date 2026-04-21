@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Trang chủ</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+            background: linear-gradient(to right, #4f7efe, #00f6fe);
+            color: white;
+        }
+
+        /* HEADER */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 30px;
+            background: rgba(255, 255, 255, 0.281);
+            backdrop-filter: blur(10px);
+        }
+
+        /* MENU */
+        .menu a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+        }
+
+        /* BOX */
+        .container {
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.2);
+            padding: 30px;
+            border-radius: 20px;
+            display: inline-block;
+            backdrop-filter: blur(10px);
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="header">
+    <h2>🏠 Trang chủ</h2>
+    <div class="menu">
+        <a href="Tc.html">Trang chủ</a>
+        <a href="TCN.html">Cá nhân</a>
+        <a href="CD.html">Cài đặt</a>
+        <a href="DN.html">Đăng xuất</a>
+    </div>
+</div>
+
+<!-- NỘI DUNG -->
+<div class="container">
+    <div class="card">
+        <h1>Chào mừng bạn </h1>
+        <p id="user"></p>
+        <button onclick="napTien()".href="NMO.html">Nạp tiền</button>
+    </div>
+    <div>
+        <button onclick="game()">Chơi game 🎲</button>
+
+    </div>
+</div>
+
+<script>
+// hiển thị tên nếu có lưu
+window.onload = function() {
+    let name = localStorage.getItem("email");
+    if(name) {
+        document.getElementById("user").innerHTML = "Xin chào: " + name;
+    } else {
+        document.getElementById("user").innerHTML = "Xin chào khách!";
+    }
+}
+
+// nút ảo
+function napTien() {
+    alert("Trang nạp tiền!");
+}
+
+function game() {
+    alert("Trang game!");
+}
+// chuyển trang
+function napTien () {
+window.location.href = "NMO.html";
+}
+function game () {
+window.location.href = "GAME.html";
+}
+</script>
+
+</body>
+</html>

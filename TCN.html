@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Trang cá nhân</title>
+<div>
+    <h1 >Trang Cá Nhân</h1>
+    <a href="Tc.html">Quay lại</a>
+</div>
+<style>
+a {
+    text-decoration: none; /* bỏ gạch chân */
+    color: white;          /* chỉnh màu chữ */
+}
+</style>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+    background: linear-gradient(to right, #667eea, #764ba2);
+    color: white;
+}
+
+/* KHUNG CHÍNH */
+.container {
+    display: flex;
+    justify-content: flex-start; /* căn trái */
+    padding: 40px;
+}
+
+/* CARD */
+.card {
+    background: rgba(255,255,255,0.2);
+    padding: 30px;
+    border-radius: 20px;
+    width: 350px;
+    backdrop-filter: blur(10px);
+}
+
+/* AVATAR */
+.avatar {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.avatar img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* TEXT INFO */
+.info {
+    text-align: left;
+}
+
+.info p {
+    margin: 8px 0;
+    font-size: 16px;
+}
+
+/* INPUT */
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 6px 0;
+    border-radius: 10px;
+    border: none;
+}
+
+/* BUTTON */
+button {
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="card">
+
+        <!-- AVATAR -->
+        <div class="avatar">
+            <img id="avatar" src="https://via.placeholder.com/100">
+            <br>
+            <input type="file" onchange="loadAvatar(event)">
+        </div>
+
+        <!-- THÔNG TIN -->
+        <div class="info">
+            <p><b>Tên:</b> <span id="showName"></span></p>
+            <p><b>SĐT:</b> <span id="showPhone"></span></p>
+            <p><b>Email:</b> <span id="showEmail"></span></p>
+            <button onclick="napTien()">Nạp Tiền</button>
+        </div>
+
+        <hr>
+
+        <!-- CHỈNH SỬA -->
+        <input type="text" id="name" placeholder="Tên">
+        <input type="text" id="phone" placeholder="SĐT">
+        <input type="email" id="email" placeholder="Email">
+
+        <button onclick="luu()">Lưu</button>
+
+    </div>
+</div>
+
+<script>
+// load dữ liệu
+window.onload = function() {
+    let name = localStorage.getItem("name") || "";
+    let phone = localStorage.getItem("phone") || "";
+    let email = localStorage.getItem("email") || "";
+    let avatar = localStorage.getItem("avatar");
+
+    document.getElementById("name").value = name;
+    document.getElementById("phone").value = phone;
+    document.getElementById("email").value = email;
+
+    document.getElementById("showName").innerHTML = name;
+    document.getElementById("showPhone").innerHTML = phone;
+    document.getElementById("showEmail").innerHTML = email;
+
+    if(avatar) {
+        document.getElementById("avatar").src = avatar;
+    }
+}
+
+// lưu dữ liệu
+function luu() {
+    let name = document.getElementById("name").value;
+    let phone = document.getElementById("phone").value;
+    let email = document.getElementById("email").value;
+
+    // lưu dữ liệu
+    localStorage.setItem("name", name);
+    localStorage.setItem("phone", phone);
+    localStorage.setItem("email", email);
+
+    // hiển thị
+    document.getElementById("showName").innerHTML = name;
+    document.getElementById("showPhone").innerHTML = phone;
+    document.getElementById("showEmail").innerHTML = email;
+
+    // 🔒 KHÓA INPUT
+    document.getElementById("name").disabled = true;
+    document.getElementById("phone").disabled = true;
+    document.getElementById("email").disabled = true;
+
+    // ❌ ẨN NÚT LƯU
+    document.getElementById("saveBtn").style.display = "none";
+
+    // lưu trạng thái khóa
+    localStorage.setItem("locked", "true");
+    // hiển thị lại
+    document.getElementById("showName").innerHTML = name;
+    document.getElementById("showPhone").innerHTML = phone;
+    document.getElementById("showEmail").innerHTML = email;
+}
+
+// load avatar
+function loadAvatar(event) {
+    let reader = new FileReader();
+    reader.onload = function() {
+        let img = reader.result;
+        document.getElementById("avatar").src = img;
+        localStorage.setItem("avatar", img);
+    }
+    reader.readAsDataURL(event.target.files[0]);
+}
+// chuyển trang
+function napTien () {
+   window.location.href = "NMO.html";
+} 
+</script>
+
+</body>
+</html>

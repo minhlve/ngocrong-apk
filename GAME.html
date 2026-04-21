@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Ngọc Rồng Online</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+    text-align: center;
+    color: white;
+    background: url('image/backgroundgame1.jpg') no-repeat center/cover;
+    background-size: cover;      /* FULL màn hình */
+    background-attachment: fixed; /* không bị trôi */
+}
+
+/* HEADER */
+.header {
+    background: rgba(0,0,0,0.6);
+    padding: 15px;
+}
+
+/* KHUNG */
+.container {
+    margin-top: 50px;
+}
+
+/* CARD */
+.card {
+    display: inline-block;
+    background: rgba(0,0,0,0.6);
+    padding: 20px;
+    margin: 10px;
+    border-radius: 15px;
+    width: 200px;
+}
+
+button {
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+/* đổi background */
+.bg-btn {
+    margin-top: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <h1>🔥 Ngọc Rồng Online</h1>
+</div>
+
+<div class="container">
+
+    <!-- TẢI GAME -->
+    <div class="card">
+        <h3>💻 PC</h3>
+        <p>Tải cho máy tính</p>
+        <button onclick="tai('pc.zip')">Tải về</button>
+    </div>
+
+    <div class="card">
+        <h3>📱 Android</h3>
+        <p>Tải APK</p>
+        <button onclick="tai('android.apk')">Tải về</button>
+    </div>
+
+    <div class="card">
+        <h3>🍎 iOS</h3>
+        <p>Tải cho iPhone</p>
+        <button onclick="tai('ios.ipa')">Tải về</button>
+    </div>
+
+   </div>
+
+<script>
+// tải file
+function tai(file) {
+    alert("Đang tải " + file);
+    window.location.href = file; // link file thật
+}
+
+    document.body.style.background = `url(${bg}) no-repeat center/cover`;
+
+    // lưu lại
+    localStorage.setItem("bg", bg);
+}
+
+// load lại background
+window.onload = function() {
+    let bg = localStorage.getItem("bg");
+    if(bg) {
+        document.body.style.background = `url(${bg}) no-repeat center/cover`;
+    }
+}
+</script>
+
+</body>
+</html>

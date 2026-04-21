@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Lấy lại mật khẩu</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: linear-gradient(to right, #667eea, #764ba2);
+            color: white;
+            text-align: center;
+        }
+
+        .box {
+            margin-top: 100px;
+            background: rgba(255,255,255,0.2);
+            padding: 30px;
+            border-radius: 15px;
+            width: 300px;
+            margin-left: auto;
+            margin-right: auto;
+            backdrop-filter: blur(10px);
+        }
+
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 10px;
+            border: none;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        a {
+            color: yellow;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="box">
+    <h2>Quên mật khẩu?</h2>
+    <p>Nhập email để lấy lại mật khẩu</p>
+
+    <input type="email" id="email" placeholder="Nhập email...">
+
+    <br>
+    <button onclick="layLai()">Xác nhận</button>
+
+    <p id="thongbao"></p>
+
+    <br>
+    <a href="login.html">Quay lại đăng nhập</a>
+</div>
+
+<script>
+function layLai() {
+    let email = document.getElementById("email").value;
+
+    if(email === "") {
+        document.getElementById("thongbao").innerHTML = "Vui lòng nhập email!";
+    } else {
+        document.getElementById("thongbao").innerHTML = "Đã gửi link lấy lại mật khẩu!";
+        
+        // giả lập chuyển trang sau 2 giây
+        setTimeout(() => {
+            window.location.href = "login.html";
+        }, 2000);
+    }
+}
+</script>
+
+</body>
+</html>

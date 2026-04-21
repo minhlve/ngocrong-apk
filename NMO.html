@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Nạp tiền</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+    background: linear-gradient(to right, #43e97b, #38f9d7);
+    color: white;
+    text-align: center;
+}
+
+.container {
+    margin-top: 80px;
+}
+
+.card {
+    background: rgba(255,255,255,0.2);
+    padding: 30px;
+    border-radius: 20px;
+    width: 320px;
+    margin: auto;
+    backdrop-filter: blur(10px);
+}
+
+button {
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+#tien {
+    font-size: 20px;
+    font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="card">
+        <h2>💰 Nạp tiền</h2>
+
+        <p>Số dư hiện tại:</p>
+        <p id="tien">0 VNĐ</p>
+
+        <hr>
+
+        <p>Chọn số tiền:</p>
+
+        <button onclick="nap(20000, 20k.jpg)">20k</button>
+        <button onclick="nap(50000, 50k.jpg)">50k</button>
+        <button onclick="nap(100000, 100k.jpg)">100k</button>
+        <button onclick="nap(200000, 200k.jpg)">200k</button>
+        <button onclick="nap(500000, 500k.jpg)">500k</button>
+        <button onclick="nap(1000000, 1m.jpg)">1m</button>
+        <button onclick="nap(2000000, 2m.jpg)">2m</button>
+        <button onclick="nap(5000000, 5m.jpg)">5m</button>
+
+        <br><br>
+
+        <button onclick="ve()">⬅ Quay lại</button>
+    </div>
+</div>
+
+<script>
+// format tiền
+function formatTien(x) {
+    return x.toLocaleString('vi-VN') + " VNĐ";
+}
+
+// load tiền
+window.onload = function() {
+    let tien = parseInt(localStorage.getItem("tien") || 0);
+    document.getElementById("tien").innerHTML = formatTien(tien);
+}
+
+// nạp tiền
+function nap(amount) {
+    let tien = parseInt(localStorage.getItem("tien") || 0);
+    tien += amount;
+
+    localStorage.setItem("tien", tien);
+    document.getElementById("tien").innerHTML = formatTien(tien);
+
+    alert("Nạp thành công +" + amount.toLocaleString('vi-VN') + " VNĐ");
+}
+
+// quay lại
+function ve() {
+    window.location.href = "Tc.html";
+}
+// hiển thị ảnh
+function chonTien(amount, img) {
+    // hiện ảnh
+    let hinh = document.getElementById("hinh");
+    hinh.src = img;
+    hinh.style.display = "block";
+
+    // lưu tạm số tiền chọn (nếu cần)
+    localStorage.setItem("chonTien", amount);
+}
+</script>
+
+</body>
+</html>
